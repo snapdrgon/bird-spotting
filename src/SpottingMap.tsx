@@ -67,7 +67,7 @@ const SpottingMap = () => {
   }, []);
 
   const placeMarker = (e: any) => {
-
+    setSelected(birdClear);
     location = { lat: Number(e.latLng.lat()), lng: Number(e.latLng.lng()) };
     getGeoLocation();
     console.log(location);
@@ -86,9 +86,10 @@ const SpottingMap = () => {
     <>
       <GoogleMap zoom={10}
         options={{
-          gestureHandling: "greedy"
+          gestureHandling: "greedy",
+          disableDoubleClickZoom: true,
+          disableDefaultUI:true,
         }}
-        // center={location}
        center={center}
         onDblClick={(e) => placeMarker(e)}
         mapContainerClassName="map-container">
