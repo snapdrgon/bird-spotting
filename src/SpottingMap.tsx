@@ -91,6 +91,7 @@ const SpottingMap = () => {
           gestureHandling: "greedy",
           disableDoubleClickZoom: false,
           disableDefaultUI:true,
+          streetViewControl : true
         }}
        center={center}
         onDblClick={(e) => placeMarker(e)}
