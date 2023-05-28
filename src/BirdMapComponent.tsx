@@ -3,7 +3,7 @@ import SpottingMap from "./SpottingMap";
 
 export default function BirdMapComponent() {
  
-    const {isLoaded, loadError} = useLoadScript({
+    const {isLoaded} = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY
         });   
 

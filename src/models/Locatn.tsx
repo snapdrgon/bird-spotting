@@ -1,4 +1,4 @@
-export type Locatn {
+export type Locatn = {
     lat:number;
     lng:number;
 }

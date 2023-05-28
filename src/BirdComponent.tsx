@@ -23,7 +23,24 @@ export default function BirdComponent() {
                 <p id="disclaimer"><strong>Please note that TakWare LLC is not associated with the Cornell Lab of Ornithology or Audubon.</strong></p>
             </div>
             <em id="credit"><a href="https://www.pexels.com/u/annaelk/" target="_blank">Photo by Adrianna Calvo on Pexels</a></em>
-            <BirdMapComponent/>
+            <BirdMapComponent />
+            <footer id="footer">
+                <hr />
+                <address>
+                    <span><div id="snapmail"><a href="mailto:admin@takwarellc.com">contact us</a></div></span>
+                    <span id="profile"><a href="http://www.linkedin.com/in/lynn-kirste-3625a137" target="_blank">LinkedIn
+                        Profile</a></span>
+                </address>
+                <br/>
+
+                <div id="siteicon">Site Icon made by <a href="http://www.freepik.com/" target="_blank">Freepik</a> from <a
+                    href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a></div>
+
+                <div id="company"> TakWare LLC<sup>&copy;</sup></div>
+                <br/><br/>
+            </footer>
+
+
         </>
     );
 }  
