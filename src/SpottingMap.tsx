@@ -3,6 +3,9 @@ import { Locatn } from "./models/Locatn";
 import { getBirds } from "./services/BirdService";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { IBirdObserver } from './models/BirdObserver'
+
+var location: Locatn = { lat: 39.94, lng: -105.12 }
+
 const SpottingMap = () => {
   let birdClear = {
     name: "",
@@ -19,7 +22,6 @@ const SpottingMap = () => {
   const [selected, setSelected] = useState(birdClear);
   const [birds, setBirds] = useState<IBirdObserver[] | null>();
 
-  var location: Locatn = { lat: 39.94, lng: -105.12 }
   var birdList: IBirdObserver[] = [];
   const center = useMemo(() => (location), [location])
 
@@ -59,19 +61,19 @@ const SpottingMap = () => {
     console.log(birds);
   }
 
-  useEffect(() => {
+ useEffect(() => {  
     //grab the geolocation
     getGeoLocation();
     console.log(location);
-    setBirdList(location);
-  }, []);
+    setBirdList(location);  
+ }, []);
 
   const placeMarker = (e: any) => {
     setSelected(birdClear);
     location = { lat: Number(e.latLng.lat()), lng: Number(e.latLng.lng()) };
-    getGeoLocation();
     console.log(location);
     setBirdList(location);
+    return false
   }
 
   console.log(birds);
@@ -87,7 +89,7 @@ const SpottingMap = () => {
       <GoogleMap zoom={10}
         options={{
           gestureHandling: "greedy",
-          disableDoubleClickZoom: true,
+          disableDoubleClickZoom: false,
           disableDefaultUI:true,
         }}
        center={center}
