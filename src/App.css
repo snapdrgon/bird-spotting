@@ -74,6 +74,9 @@
       padding: 25px;
     }
     
+    .medFont {
+      font-size: larger;
+    }
     
     #siteicon {
       text-align: center;
