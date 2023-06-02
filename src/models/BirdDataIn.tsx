@@ -1,4 +1,4 @@
-export interface BirdDataIn {
+export interface IBirdDataIn {
     speciesCode : string;
     comName :  string;
     sciName :  string;
