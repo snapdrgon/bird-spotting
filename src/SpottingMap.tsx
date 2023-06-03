@@ -134,6 +134,7 @@ const SpottingMap = () => {
           )
         }
       </GoogleMap> 
+      <br/>
         <div id="weatherLanding">
           <WeatherInfo lat={location.lat} lng={location.lng} />
         </div>

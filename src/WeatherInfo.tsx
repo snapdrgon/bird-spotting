@@ -54,14 +54,85 @@ const WeatherInfo = (param: Locatn) => {
     }
     )
 
-    getCurrentWeather(location);
+const convertEpochTimeToLocalTime=(utcSeconds: number):string =>
+{
+    let date = new Date(0); 
+    date.setUTCSeconds(utcSeconds);
+    return date.toLocaleTimeString();
+}
 
+    getCurrentWeather(location);
+    const direction = (compassPoint: string) => {
+        switch (compassPoint) {
+            case 'N':
+                return 'north';
+                break;
+            case 'NE':
+                return 'north east';
+                break;
+            case 'NNE':
+                return 'north north east';
+                break;
+            case 'NW':
+                return 'north west';
+                break;
+            case 'NNW':
+                return 'north north west';
+                break;
+            case 'S':
+                return 'south';
+                break;
+            case 'SE':
+                return 'south east';
+                break;
+            case 'SSE':
+                return 'south south east';
+                break;
+            case 'SW':
+                return 'south west';
+                break;
+            case 'SSW':
+                return 'south south west';
+                break;
+            case 'E':
+                return 'east';
+                break;
+            case 'ENE':
+                return 'east north east';
+                break;
+            case 'ESE':
+                return 'east south east';
+                break;
+            case 'W':
+                return 'west';
+                break;
+            case 'WSW':
+                return 'west south west';
+                break;
+            case 'WNW':
+                return 'west north west';
+                break;
+
+        }
+    }
 
     return (
         <>
-            {JSON.stringify(weatherInfo)}
+            {/* {JSON.stringify(weatherInfo)} */}
+            <img src={`https://${weatherInfo.current.condition.icon}`} />
+            <div >
+                <p>{weatherInfo.location.name}, {weatherInfo.location.region}</p>
+                <p>Current Condition: {weatherInfo.current.condition.text}<br />
+                    Temperature: {weatherInfo.current.temp_f} degrees F<br />
+                    Winds out of the {direction(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
+                    {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
+                </p>
+            </div>
+            <br />
         </>
     )
+
+
 }
 
 export default WeatherInfo

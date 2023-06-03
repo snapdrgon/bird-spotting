@@ -32,7 +32,8 @@ export default function BirdComponent() {
                 <br/>
 
                 <div id="siteicon">Site Icon made by <a href="http://www.freepik.com/" target="_blank">Freepik</a> from <a
-                    href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a></div>
+                    href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a><br/>
+                    Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></div>
 
                 <div id="company">TakWare LLC<sup>&copy;</sup></div>
                 <br/><br/>

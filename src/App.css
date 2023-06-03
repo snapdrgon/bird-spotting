@@ -83,8 +83,11 @@
     }
 
     #weatherLanding{
-      background-color: cornflowerblue;
+      background-image: url("./assets/images/pexels-pixabay-53594.jpg");
       word-wrap: break-word;
       position:relative;
+      font-family: 'Ubuntu', sans-serif;
+      font-size: 25px;
+      font-weight:bold;
     }
     
