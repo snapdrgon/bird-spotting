@@ -81,4 +81,10 @@
     #siteicon {
       text-align: center;
     }
+
+    #weatherLanding{
+      background-color: cornflowerblue;
+      word-wrap: break-word;
+      position:relative;
+    }
     

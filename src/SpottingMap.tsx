@@ -1,11 +1,10 @@
 import { useMemo, useEffect, useState } from "react";
-import WeatherInfo, {} from './WeatherInfo'
+import WeatherInfo, { } from './WeatherInfo'
 import { Locatn } from "./models/Locatn";
 import { getBirds } from "./services/BirdService";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { IBirdObserver } from './models/BirdObserver'
-import { ICurrentWeather } from "./models/CurrentWeather";
-
+import Frame from 'react-frame-component';
 var location: Locatn = { lat: 39.94, lng: -105.12 }
 
 const SpottingMap = () => {
@@ -41,7 +40,7 @@ const SpottingMap = () => {
     }
   }
 
-  const setBirdList = (location:Locatn) =>{
+  const setBirdList = (location: Locatn) => {
     getBirds(location).then((response) => {
       let bufferBird = response;
       birdList = [];
@@ -63,12 +62,12 @@ const SpottingMap = () => {
     console.log(birds);
   }
 
- useEffect(() => {  
+  useEffect(() => {
     //grab the geolocation
     getGeoLocation();
     console.log(location);
-    setBirdList(location);  
- }, []);
+    setBirdList(location);
+  }, []);
 
   const placeMarker = (e: any) => {
     setSelected(birdClear);
@@ -92,11 +91,11 @@ const SpottingMap = () => {
         options={{
           gestureHandling: "greedy",
           disableDoubleClickZoom: false,
-          disableDefaultUI:true,
-          streetViewControl : true,
-          zoomControl:true,
+          disableDefaultUI: true,
+          streetViewControl: true,
+          zoomControl: true,
         }}
-       center={center}
+        center={center}
         onDblClick={(e) => placeMarker(e)}
         mapContainerClassName="map-container">
         {
@@ -134,8 +133,10 @@ const SpottingMap = () => {
             </InfoWindow>
           )
         }
-      </GoogleMap>
-      <WeatherInfo lat={location.lat} lng={location.lng} />
+      </GoogleMap> 
+        <div id="weatherLanding">
+          <WeatherInfo lat={location.lat} lng={location.lng} />
+        </div>
     </>
   )
 }

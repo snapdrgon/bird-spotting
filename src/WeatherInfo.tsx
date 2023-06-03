@@ -1,4 +1,3 @@
-import { useMemo, useEffect, useState } from "react";
 import { ICurrentWeather } from './models/CurrentWeather';
 import { getCurrentWeather } from './services/WeatherService';
 import { Locatn } from "./models/Locatn";
@@ -47,7 +46,7 @@ let weatherClear = {
 
 //const [weatherInfo, setWeatherInfo] = useState<ICurrentWeather>();
 let weatherInfo: ICurrentWeather = weatherClear;
-const WeatherInfo = (param:Locatn) => {
+const WeatherInfo = (param: Locatn) => {
     let location = param;
     getCurrentWeather(location).then((response) => {
         weatherInfo = response;
