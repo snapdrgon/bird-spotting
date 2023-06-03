@@ -4,7 +4,7 @@ import { Locatn } from "./models/Locatn";
 import { getBirds } from "./services/BirdService";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { IBirdObserver } from './models/BirdObserver'
-import Frame from 'react-frame-component';
+
 var location: Locatn = { lat: 39.94, lng: -105.12 }
 
 const SpottingMap = () => {

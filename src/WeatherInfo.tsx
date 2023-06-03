@@ -54,12 +54,12 @@ const WeatherInfo = (param: Locatn) => {
     }
     )
 
-const convertEpochTimeToLocalTime=(utcSeconds: number):string =>
-{
-    let date = new Date(0); 
-    date.setUTCSeconds(utcSeconds);
-    return date.toLocaleTimeString();
-}
+// const convertEpochTimeToLocalTime=(utcSeconds: number):string =>
+// {
+//     let date = new Date(0); 
+//     date.setUTCSeconds(utcSeconds);
+//     return date.toLocaleTimeString();
+// }
 
     getCurrentWeather(location);
     const direction = (compassPoint: string) => {
