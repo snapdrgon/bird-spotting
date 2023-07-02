@@ -1,6 +1,7 @@
 import { ICurrentWeather } from './models/CurrentWeather';
 import { getCurrentWeather } from './services/WeatherService';
 import { Locatn } from "./models/Locatn";
+import WeatherForecast from './WeatherForecast';
 //var location: Locatn = { lat: 39.94, lng: -105.12 }
 let weatherClear = {
     location: {
@@ -62,6 +63,7 @@ const WeatherInfo = (param: Locatn) => {
 // }
 
     getCurrentWeather(location);
+    
     const direction = (compassPoint: string) => {
         switch (compassPoint) {
             case 'N':
@@ -127,8 +129,11 @@ const WeatherInfo = (param: Locatn) => {
                     Winds out of the {direction(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
                     {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
                 </p>
-            </div>
+            </div> 
+            <hr />
+            <WeatherForecast lat={location.lat} lng={location.lng}/>
             <br />
+           
         </>
     )
 

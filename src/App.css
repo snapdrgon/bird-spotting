@@ -91,3 +91,7 @@
       font-weight:bold;
     }
     
+    #forecast{
+      float:left;
+      white-space: nowrap
+    }

@@ -1,52 +1,8 @@
-import axios from 'axios';
-import { Locatn } from '../models/Locatn';
-import { ICurrentWeather } from '../models/CurrentWeather';
-import { IForecastWeather } from '../models/ForecastWeather';
-const baseUrl = import.meta.env.VITE_WEATHER_BASE_URL;
-const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
-let weatherClear:ICurrentWeather = {
-    location: {
-        name: '',
-        region: '',
-        country: '',
-        lat: 0,
-        lon: 0,
-        tz_id: '',
-        localtime_epoch: 0,
-        localtime: new Date
-    },
-    current: {
-        last_updated_epoch: 0,
-        last_updated: new Date,
-        temp_c: 0,
-        temp_f: 0,
-        is_day: 0,
-        condition: {
-            text: '',
-            icon: '',
-            code: 0
-        },
-        wind_mph: 0,
-        wind_kph: 0,
-        wind_degree: 0,
-        wind_dir: '',
-        pressure_mb: 0,
-        pressure_in: 0,
-        precip_mm: 0,
-        precip_in: 0,
-        humidity: 0,
-        cloud: 0,
-        feelslike_c: 0,
-        feelslike_f: 0,
-        vis_km: 0,
-        vis_miles: 0,
-        uv: 0,
-        gust_mph: 0,
-        gust_kph: 0
-    }
-}
+import { getForecastWeather } from './services/WeatherService';
+import { Locatn } from "./models/Locatn";
+import { IForecastWeather } from './models/ForecastWeather';
 
-let forecastClear:IForecastWeather =  {
+let forecastClear: IForecastWeather = {
     location: {
         name: '',
         region: '',
@@ -174,59 +130,85 @@ let forecastClear:IForecastWeather =  {
     }
 };
 
-function current(location: Locatn): Promise<ICurrentWeather> {
-    return new Promise((resolve, reject) => {
-        console.log(location);
-        let url = `${baseUrl}/current.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}`;
-        let weatherCurrent: ICurrentWeather;
-        axios.get(url).then((response) => {
-            weatherCurrent = response.data;
-            console.log(weatherCurrent);
-            resolve(weatherCurrent);
-        }).catch(() => {
-            reject("Unable to retrieve Current Weather");
-        });
+let forecastInfo: IForecastWeather = forecastClear;
 
-    })
-}
-
-export async function getCurrentWeather(location: Locatn): Promise<ICurrentWeather> {
-    let weatherCurrentReturn: ICurrentWeather = weatherClear;
-    try {
-        weatherCurrentReturn = await current(location)
+const WeatherForecast = (param: Locatn) => {
+    let location = param;
+    getForecastWeather(location).then((response) => {
+        forecastInfo = response;
+        console.log(forecastInfo);
     }
-    catch (err) {
-        console.log(err);
+    )
+
+    getForecastWeather(location);
+
+    const direction = (compassPoint: string) => {
+        switch (compassPoint) {
+            case 'N':
+                return 'north';
+                break;
+            case 'NE':
+                return 'north east';
+                break;
+            case 'NNE':
+                return 'north north east';
+                break;
+            case 'NW':
+                return 'north west';
+                break;
+            case 'NNW':
+                return 'north north west';
+                break;
+            case 'S':
+                return 'south';
+                break;
+            case 'SE':
+                return 'south east';
+                break;
+            case 'SSE':
+                return 'south south east';
+                break;
+            case 'SW':
+                return 'south west';
+                break;
+            case 'SSW':
+                return 'south south west';
+                break;
+            case 'E':
+                return 'east';
+                break;
+            case 'ENE':
+                return 'east north east';
+                break;
+            case 'ESE':
+                return 'east south east';
+                break;
+            case 'W':
+                return 'west';
+                break;
+            case 'WSW':
+                return 'west south west';
+                break;
+            case 'WNW':
+                return 'west north west';
+                break;
+
+        }
     }
-    return weatherCurrentReturn;
+
+    return (
+        <>
+           {/* {JSON.stringify(forecastInfo)}  */}
+
+           <div>
+            {forecastInfo.forecast.forecastday.map(forecastDay =>
+               (
+                <div id='forecast'>{forecastDay.day.maxtemp_f}&nbsp;</div>
+               )
+            )}
+         </div>
+        </>
+    )
+
 }
-
-//http://api.weatherapi.com/v1/forecast.json?key=&q=London&days=1&aqi=no&alerts=no
-
-function forecast(location: Locatn): Promise<IForecastWeather> {
-    return new Promise((resolve, reject) => {
-        console.log(location);
-        let url = `${baseUrl}/forecast.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&days=5`;
-        let weatherForecast: IForecastWeather;
-        axios.get(url).then((response) => {
-            weatherForecast = response.data;
-            console.log(weatherForecast);
-            resolve(weatherForecast);
-        }).catch(() => {
-            reject("Unable to retrieve Forecast Weather");
-        });
-
-    })
-}
-
-export async function getForecastWeather(location: Locatn): Promise<IForecastWeather> {
-    let weatherForecastReturn: IForecastWeather = forecastClear;
-    try {
-        weatherForecastReturn = await forecast(location)
-    }
-    catch (err) {
-        console.log(err);
-    }
-    return weatherForecastReturn;
-}
-
+export default WeatherForecast;

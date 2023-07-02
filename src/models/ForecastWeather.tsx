@@ -1,4 +1,4 @@
-export interface IForcastWeather {
+export interface IForecastWeather {
     location: {
         name: string;
         region: string;
