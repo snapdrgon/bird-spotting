@@ -148,49 +148,49 @@ const WeatherForecast = (param: Locatn) => {
                 return 'north';
                 break;
             case 'NE':
-                return 'north east';
+                return 'northeast';
                 break;
             case 'NNE':
-                return 'north north east';
+                return 'north northeast';
                 break;
             case 'NW':
                 return 'north west';
                 break;
             case 'NNW':
-                return 'north north west';
+                return 'north northwest';
                 break;
             case 'S':
                 return 'south';
                 break;
             case 'SE':
-                return 'south east';
+                return 'southeast';
                 break;
             case 'SSE':
-                return 'south south east';
+                return 'south southeast';
                 break;
             case 'SW':
-                return 'south west';
+                return 'southwest';
                 break;
             case 'SSW':
-                return 'south south west';
+                return 'south southwest';
                 break;
             case 'E':
                 return 'east';
                 break;
             case 'ENE':
-                return 'east north east';
+                return 'east northeast';
                 break;
             case 'ESE':
-                return 'east south east';
+                return 'east southeast';
                 break;
             case 'W':
                 return 'west';
                 break;
             case 'WSW':
-                return 'west south west';
+                return 'west southwest';
                 break;
             case 'WNW':
-                return 'west north west';
+                return 'west northwest';
                 break;
 
         }
@@ -198,17 +198,56 @@ const WeatherForecast = (param: Locatn) => {
 
     return (
         <>
-           {/* {JSON.stringify(forecastInfo)}  */}
+            {/* {JSON.stringify(forecastInfo)}  */}
 
-           <div>
-            {forecastInfo.forecast.forecastday.map(forecastDay =>
-               (
-                <div id='forecast'>{forecastDay.day.maxtemp_f}&nbsp;</div>
-               )
-            )}
-         </div>
+            <div id='forecast'>
+
+                <ul className="list-group list-group-horizontal-sm flex-fill justify-content-center">
+                    {forecastInfo.forecast.forecastday.slice(1).map(forecastDay =>
+                    (
+
+                        <div>
+                            <li id="forecastItem" className="list-group-item">
+                                
+                                {convertEpochToDate(forecastDay.date_epoch)}<br/>
+                                <img src={`https://${forecastDay.day.condition.icon}`} /><br />
+                                Max Temp: {forecastDay.day.maxtemp_f}<br />
+                                Min Temp: {forecastDay.day.mintemp_f}
+                            </li>
+                            &nbsp;&nbsp;
+                        </div>
+                    )
+                    )}
+                </ul>
+
+            </div>
+
         </>
     )
+    function convertEpochToDate(date_epoch: number):string {
+        let date = new Date(date_epoch * 1000);
+        let dateIndex = date.getUTCDay();
+        
+        let dateOut = "";
+        switch (dateIndex) {
+            case 0: dateOut = "Sunday";
+            break;
+            case 1: dateOut = "Monday";
+            break;
+            case 2: dateOut = "Tuesday";
+            break;
+            case 3: dateOut = "Wednesday";
+            break;
+            case 4: dateOut = "Thursday";
+            break;
+            case 5: dateOut = "Friday";
+            break;
+            case 6: dateOut = "Saturday";
+            break;       
+        }
+        console.log(dateIndex, dateOut, date.toLocaleDateString(), date_epoch);
+        return dateOut;
+    }
 
 }
 export default WeatherForecast;

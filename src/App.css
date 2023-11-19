@@ -91,7 +91,16 @@
       font-weight:bold;
     }
     
-    #forecast{
-      float:left;
-      white-space: nowrap
-    }
+    
+  #forecast{
+    display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+   }
+
+   #forecastItem {
+    border: none;
+    background-color: transparent;
+   }
+
+  

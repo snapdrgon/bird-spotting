@@ -70,49 +70,49 @@ const WeatherInfo = (param: Locatn) => {
                 return 'north';
                 break;
             case 'NE':
-                return 'north east';
+                return 'northeast';
                 break;
             case 'NNE':
-                return 'north north east';
+                return 'north northeast';
                 break;
             case 'NW':
-                return 'north west';
+                return 'northwest';
                 break;
             case 'NNW':
-                return 'north north west';
+                return 'north northwest';
                 break;
             case 'S':
                 return 'south';
                 break;
             case 'SE':
-                return 'south east';
+                return 'southeast';
                 break;
             case 'SSE':
-                return 'south south east';
+                return 'south southeast';
                 break;
             case 'SW':
-                return 'south west';
+                return 'southwest';
                 break;
             case 'SSW':
-                return 'south south west';
+                return 'south southwest';
                 break;
             case 'E':
                 return 'east';
                 break;
             case 'ENE':
-                return 'east north east';
+                return 'east northeast';
                 break;
             case 'ESE':
-                return 'east south east';
+                return 'east southeast';
                 break;
             case 'W':
                 return 'west';
                 break;
             case 'WSW':
-                return 'west south west';
+                return 'west southwest';
                 break;
             case 'WNW':
-                return 'west north west';
+                return 'west northwest';
                 break;
 
         }
