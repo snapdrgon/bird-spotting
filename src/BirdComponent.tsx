@@ -25,7 +25,7 @@ export default function BirdComponent() {
             <footer id="footer">
                 <hr />
                 <address>
-                    <span><div id="snapmail"><a href="mailto:admin@takwarellc.com">contact us</a></div></span>
+                    <span><div id="snapmail"><a href="mailto:admin@bird-spotting.com">contact us</a></div></span>
                     <span id="profile"><a href="http://www.linkedin.com/in/lynn-kirste-3625a137" target="_blank">LinkedIn
                         Profile</a></span>
                 </address>
