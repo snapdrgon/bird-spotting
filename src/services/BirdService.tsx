@@ -12,7 +12,7 @@ function birds(location: Locatn) : Promise<IBirdObserver[]> {
         let birds: IBirdDataIn[] | null;
         birds = [];
         console.log(location);
-        let url = `${baseUrl}?lat=${location.lat}&lng=${location.lng}`;
+        let url = `${baseUrl}?lat=${location.lat}&lng=${location.lng}&sppLocale=en`; //en, fr, esp
         birdList = [];
         axios.get(url,
             {

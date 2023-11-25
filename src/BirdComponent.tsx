@@ -26,8 +26,6 @@ export default function BirdComponent() {
                 <hr />
                 <address>
                     <span><div id="snapmail"><a href="mailto:admin@bird-spotting.com">contact us</a></div></span>
-                   {/* <span id="profile"><a href="http://www.linkedin.com/in/lynn-kirste-3625a137" target="_blank">LinkedIn
-                        Profile</a></span>*/}
                         <span id="profile"><div id="company">TakWare LLC<sup>&copy;</sup></div></span>
                 </address>
                 <br/>
@@ -36,7 +34,6 @@ export default function BirdComponent() {
                     href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a><br/>
                     Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></div>
 
-                {/*<div id="company">TakWare LLC<sup>&copy;</sup></div>*/}
                 <br/><br/>
             </footer>
 
