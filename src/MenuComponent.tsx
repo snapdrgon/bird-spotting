@@ -4,7 +4,7 @@ export default function MenuComponent() {
 
     const setLanguage = (language: LanguageType) => {
         console.log(`Language: ${language}`);
-    
+        localStorage.setItem('languageType', language);
     }
 
     return (

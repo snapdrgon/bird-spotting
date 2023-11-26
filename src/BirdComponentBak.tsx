@@ -1,59 +1,5 @@
 import BirdMapComponent from './BirdMapComponent';
-import { useMemo, useEffect, useState } from "react";
-import { LanguageType } from './enumerators/Language';
-import { IWebMarkup } from './models/WebMarkup';
-import webMarkupIn from './assets/text/markup.json'
-export default function BirdComponent() {
-
-    let webMarkup: IWebMarkup = {
-        Descriptions: [
-            {
-                Desc: ''
-            }
-        ],
-        Information: [
-            {
-                Info: ''
-            }
-        ],
-        Disclaimers: [
-            {
-                Disclaimer: ''
-            }
-        ],
-        PhotoInfo: [
-            {
-                Photo: ''
-            }],
-        SiteIcon: [
-            {
-                Icon: '',
-                From: ''
-            }
-        ],
-        Powered: [
-            {
-                Info: ''
-            }
-        ]
-    };
-
-    const setLanguage = () => {
-        let languageType = localStorage.getItem("languageType");
-        if (languageType == null) {
-            //set default english
-            localStorage.setItem('languageType', LanguageType.English);
-            languageType = localStorage.getItem("languageType");
-        }
-        console.log(`LanguageType: ${languageType}`);
-    }
-
-    useEffect(() => {
-        webMarkup = webMarkupIn
-        console.log(webMarkup);
-            //grab/set the LanguageType
-            setLanguage();
-    }, []);
+export default function BirdComponentBak() {
 
     return (
         <>
@@ -66,7 +12,7 @@ export default function BirdComponent() {
                     direct you to a web page on eBird containing additional information. The information is provided through the
                     Cornell Lab of Ornithology eBird API. For additional information on how you can help add to the database of birds spotted in your area
                     you can go to  <a href="http://ebird.org/content/ebird/" target="_blank">eBird</a>
-
+                    
                 </p>
                 <hr className="my-4" />
                 <p className="lead">If you want additional information on the birds spotted, suggested sites include
@@ -80,15 +26,15 @@ export default function BirdComponent() {
                 <hr />
                 <address>
                     <span><div id="snapmail"><a href="mailto:admin@bird-spotting.com">contact us</a></div></span>
-                    <span id="profile"><div id="company">TakWare LLC<sup>&copy;</sup></div></span>
+                        <span id="profile"><div id="company">TakWare LLC<sup>&copy;</sup></div></span>
                 </address>
-                <br />
+                <br/>
 
                 <div id="siteicon">Site Icon made by <a href="http://www.freepik.com/" target="_blank">Freepik</a> from <a
-                    href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a><br />
+                    href="https://www.flaticon.com/" target="_blank">www.flaticon.com</a><br/>
                     Powered by <a href="https://www.weatherapi.com/" title="Weather API">WeatherAPI.com</a></div>
 
-                <br /><br />
+                <br/><br/>
             </footer>
 
 
