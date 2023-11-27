@@ -2,41 +2,45 @@ import BirdMapComponent from './BirdMapComponent';
 import { useMemo, useEffect, useState } from "react";
 import { LanguageType } from './enumerators/Language';
 import { IWebMarkup } from './models/WebMarkup';
-import webMarkupIn from './assets/text/markup.json'
+import { getForecastWeather } from './services/WeatherService';
+import { getMarkup } from './services/FileService';
 export default function BirdComponent() {
 
-    let webMarkup: IWebMarkup = {
-        Descriptions: [
+    let markupClear: IWebMarkup = {
+        Markup: [
             {
-                Desc: ''
-            }
-        ],
-        Information: [
-            {
-                Info: ''
-            }
-        ],
-        Disclaimers: [
-            {
-                Disclaimer: ''
-            }
-        ],
-        PhotoInfo: [
-            {
-                Photo: ''
-            }],
-        SiteIcon: [
-            {
-                Icon: '',
-                From: ''
-            }
-        ],
-        Powered: [
-            {
-                Info: ''
+                Descriptions:
+                {
+                    Desc: ''
+                },
+                Disclaimers:
+                {
+                    Disclaimer: ''
+                },
+                Information:
+                {
+                    Info: ''
+                },
+                PhotoInfo:
+                {
+                    Photo: ''
+                },
+                Powered:
+                {
+                    Info: ''
+                },
+                SiteIcon:
+                {
+                    Icon: '',
+                    From: ''
+                }
+
             }
         ]
-    };
+    }
+
+    let webMarkup = markupClear;
+    let langIndex = -1;
 
     const setLanguage = () => {
         let languageType = localStorage.getItem("languageType");
@@ -46,13 +50,29 @@ export default function BirdComponent() {
             languageType = localStorage.getItem("languageType");
         }
         console.log(`LanguageType: ${languageType}`);
+        switch (languageType) {
+            case LanguageType.English:
+                langIndex = 0;
+                break;
+            case LanguageType.Español:
+                langIndex = 1;
+                break;
+            case LanguageType.Français:
+                langIndex = 2;
+                break;
+        }
     }
 
     useEffect(() => {
-        webMarkup = webMarkupIn
-        console.log(webMarkup);
-            //grab/set the LanguageType
-            setLanguage();
+        //grab the markup
+        getMarkup().then((response) => {
+            webMarkup = response;
+            console.log(webMarkup.Markup[0]);
+        })
+        //grab/set the LanguageType
+        setLanguage();
+        let description = webMarkup.Markup[0].Descriptions;
+        console.log(description);
     }, []);
 
     return (

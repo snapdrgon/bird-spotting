@@ -1,32 +1,33 @@
 export interface IWebMarkup {
-    Descriptions: [
+    Markup: [
         {
-            Desc: string;
-        }
-    ],
-    Information: [
-        {
-            Info: string;
-        }
-    ],
-    Disclaimers: [
-        {
-            Disclaimer: string;
-        }
-    ],
-    PhotoInfo: [
-        {
-            Photo: string;
-        }],
-    SiteIcon: [
-        {
-            Icon: string;
-            From: string;
-        }
-    ],
-    Powered: [
-        {
-            Info: string;
+            Descriptions:
+            {
+                Desc: string;
+            }
+            ,
+            Disclaimers:
+            {
+                Disclaimer: string;
+            },
+            Information:
+            {
+                Info: string;
+            },
+            PhotoInfo:
+            {
+                Photo: string;
+            },
+            Powered:
+            {
+                Info: string;
+            },
+            SiteIcon:
+            {
+                Icon: string;
+                From: string;
+            }
+
         }
     ]
 }
