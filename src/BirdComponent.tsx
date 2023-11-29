@@ -4,76 +4,55 @@ import { LanguageType } from './enumerators/Language';
 import { IWebMarkup } from './models/WebMarkup';
 import { getForecastWeather } from './services/WeatherService';
 import { getMarkup } from './services/FileService';
-export default function BirdComponent() {
+import { LangTypeIndex } from './models/LangTypeIndex';
 
-    let markupClear: IWebMarkup = {
-        Markup: [
-            {
-                Descriptions:
-                {
-                    Desc: ''
-                },
-                Disclaimers:
-                {
-                    Disclaimer: ''
-                },
-                Information:
-                {
-                    Info: ''
-                },
-                PhotoInfo:
-                {
-                    Photo: ''
-                },
-                Powered:
-                {
-                    Info: ''
-                },
-                SiteIcon:
-                {
-                    Icon: '',
-                    From: ''
-                }
+export default function BirdComponent(param: LangTypeIndex) {
 
-            }
-        ]
-    }
+    const [webMarkup, setwebMarkup] = useState<IWebMarkup | null>();
+    const [langTypeIdx, setlangTypeIdx] = useState(param.langTypeIdx);
+ 
+    // const getLangIndex = (): number => {
+    //     let langIndex = 0;
+    //     let languageType = localStorage.getItem("languageType");
+    //     if (languageType == null) {
+    //         //set default english
+    //         localStorage.setItem('languageType', LanguageType.English);
+    //         languageType = localStorage.getItem("languageType");
+    //     }
+    //     switch (languageType) {
+    //         case LanguageType.English:
+    //             langIndex = 0;
+    //             break;
+    //         case LanguageType.Español:
+    //             langIndex = 1;
+    //             break;
+    //         case LanguageType.Français:
+    //             langIndex = 2;
+    //             break;
+    //     }
+    //     return langIndex;
+    // }
+    // const [languageIndex, setLanguageIndex] = useState({"langIndex":getLangIndex()});
+  
 
-    let webMarkup = markupClear;
-    let langIndex = -1;
-
-    const setLanguage = () => {
-        let languageType = localStorage.getItem("languageType");
-        if (languageType == null) {
-            //set default english
-            localStorage.setItem('languageType', LanguageType.English);
-            languageType = localStorage.getItem("languageType");
-        }
-        console.log(`LanguageType: ${languageType}`);
-        switch (languageType) {
-            case LanguageType.English:
-                langIndex = 0;
-                break;
-            case LanguageType.Español:
-                langIndex = 1;
-                break;
-            case LanguageType.Français:
-                langIndex = 2;
-                break;
-        }
+    const getMarkupInfo = () => {
+        getMarkup().then((response) => {
+            let markupIn: IWebMarkup = response;
+            setwebMarkup(markupIn);
+        })
     }
 
     useEffect(() => {
+
         //grab the markup
-        getMarkup().then((response) => {
-            webMarkup = response;
-            console.log(webMarkup.Markup[0]);
-        })
-        //grab/set the LanguageType
-        setLanguage();
-        let description = webMarkup.Markup[0].Descriptions;
-        console.log(description);
-    }, []);
+        setlangTypeIdx(param.langTypeIdx);
+        getMarkupInfo();
+    }, [param.langTypeIdx]);
+
+    console.log(JSON.stringify(webMarkup));
+    console.log(`langTypeIdx: ${langTypeIdx}`);
+
+    let markup = webMarkup?.Markup[langTypeIdx];
 
     return (
         <>
@@ -81,11 +60,7 @@ export default function BirdComponent() {
                 <h1 className="display-3">Bird Spotting</h1>
                 <br />
                 <br />
-                <p className="lead">The Bird Spotting map below allows you to double click on the map and any birds spotted in the area will be marked
-                    with the common name of the bird, the number spotted and the location. If you click on the bird's name a new browser tab will open and
-                    direct you to a web page on eBird containing additional information. The information is provided through the
-                    Cornell Lab of Ornithology eBird API. For additional information on how you can help add to the database of birds spotted in your area
-                    you can go to  <a href="http://ebird.org/content/ebird/" target="_blank">eBird</a>
+                <p className="lead">{markup?.Descriptions.Desc}<a href="http://ebird.org/content/ebird/" target="_blank">eBird</a>
 
                 </p>
                 <hr className="my-4" />

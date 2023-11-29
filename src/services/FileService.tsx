@@ -36,7 +36,6 @@ let markupClear:IWebMarkup= {
 
 function markUpIn(): Promise<IWebMarkup> {
     return new Promise((resolve, reject) => {
-        console.log(location);
         let url = "../json/markup.json";
         let webMarkupIn: IWebMarkup;
         axios.get(url).then((response) => {
