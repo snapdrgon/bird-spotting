@@ -1,8 +1,18 @@
 import { useLoadScript } from "@react-google-maps/api";
 import SpottingMap from "./SpottingMap";
+import { LangTypeIndex } from "./models/LangTypeIndex";
+import { useEffect, useState } from "react";
 
-export default function BirdMapComponent() {
+export default function BirdMapComponent(props: { langTypeIdx: number; }) {
  
+    // const [langTypeIdx, setlangTypeIdx] = useState(props.langTypeIdx);
+
+    let langTypeIdx = props.langTypeIdx;
+    
+    useEffect(() => {
+      // setlangTypeIdx(props.langTypeIdx);
+  }, [props.langTypeIdx]);
+
     const {isLoaded} = useLoadScript({
         googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAP_API_KEY
         });   
@@ -12,6 +22,6 @@ export default function BirdMapComponent() {
           }
           else 
           {
-            return <div><SpottingMap/></div>
+            return <div><SpottingMap  langTypeIdx={langTypeIdx} /></div>
           }
 };

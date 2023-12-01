@@ -1,11 +1,14 @@
 export interface IWebMarkup {
     Markup: [
         {
+            Title:
+            {
+                Desc: string
+            },
             Descriptions:
             {
                 Desc: string;
-            }
-            ,
+            },
             Disclaimers:
             {
                 Disclaimer: string;
@@ -13,6 +16,7 @@ export interface IWebMarkup {
             Information:
             {
                 Info: string;
+                And: string;
             },
             PhotoInfo:
             {
@@ -26,6 +30,10 @@ export interface IWebMarkup {
             {
                 Icon: string;
                 From: string;
+            },
+            Contact:
+            {
+                Info: string;
             }
 
         }

@@ -2,6 +2,7 @@ import { ICurrentWeather } from './models/CurrentWeather';
 import { getCurrentWeather } from './services/WeatherService';
 import { Locatn } from "./models/Locatn";
 import WeatherForecast from './WeatherForecast';
+import { LangTypeIndex } from './models/LangTypeIndex';
 //var location: Locatn = { lat: 39.94, lng: -105.12 }
 let weatherClear = {
     location: {
@@ -47,23 +48,19 @@ let weatherClear = {
 
 //const [weatherInfo, setWeatherInfo] = useState<ICurrentWeather>();
 let weatherInfo: ICurrentWeather = weatherClear;
-const WeatherInfo = (param: Locatn) => {
-    let location = param;
+const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
+    let location = props.location;
+    let langTypeIdx = props.langTypeIdx;
     getCurrentWeather(location).then((response) => {
         weatherInfo = response;
         console.log(weatherInfo);
     }
     )
 
-// const convertEpochTimeToLocalTime=(utcSeconds: number):string =>
-// {
-//     let date = new Date(0); 
-//     date.setUTCSeconds(utcSeconds);
-//     return date.toLocaleTimeString();
-// }
+    console.log(`langTypeIdx: ${langTypeIdx}`);
 
     getCurrentWeather(location);
-    
+
     const direction = (compassPoint: string) => {
         switch (compassPoint) {
             case 'N':
@@ -129,11 +126,11 @@ const WeatherInfo = (param: Locatn) => {
                     Winds out of the {direction(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
                     {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
                 </p>
-            </div> 
+            </div>
             <hr />
-            <WeatherForecast lat={location.lat} lng={location.lng}/>
+            <WeatherForecast location={location}  langTypeIdx={langTypeIdx}  />
             <br />
-           
+
         </>
     )
 

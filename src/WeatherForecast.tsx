@@ -132,13 +132,16 @@ let forecastClear: IForecastWeather = {
 
 let forecastInfo: IForecastWeather = forecastClear;
 
-const WeatherForecast = (param: Locatn) => {
-    let location = param;
+const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
+    let location = props.location;
+    let langTypeIdx = props.langTypeIdx;
     getForecastWeather(location).then((response) => {
         forecastInfo = response;
         console.log(forecastInfo);
     }
     )
+
+    console.log(`langTypeIdx: ${langTypeIdx}`)
 
     getForecastWeather(location);
 

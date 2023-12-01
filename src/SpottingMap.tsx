@@ -4,10 +4,15 @@ import { Locatn } from "./models/Locatn";
 import { getBirds } from "./services/BirdService";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { IBirdObserver } from './models/BirdObserver'
+import { LangTypeIndex } from "./models/LangTypeIndex";
 
 var location: Locatn = { lat: 39.94, lng: -105.12 }
 
-const SpottingMap = () => {
+const SpottingMap = (props: { langTypeIdx: number; }) => {
+
+  //const [langTypeIdx, setlangTypeIdx] = useState(props.langTypeIdx);
+  let langTypeIdx = props.langTypeIdx;
+
   let birdClear = {
     name: "",
     speciesCode: "",
@@ -19,6 +24,12 @@ const SpottingMap = () => {
     lat: 0,
     lng: 0
   };
+     
+  useEffect(() => {
+  //  setlangTypeIdx(props.langTypeIdx);
+}, [props.langTypeIdx]);
+
+  console.log(`langTypeIdx: ${langTypeIdx}`);
 
   const [selected, setSelected] = useState(birdClear);
   const [birds, setBirds] = useState<IBirdObserver[] | null>();
@@ -136,7 +147,7 @@ const SpottingMap = () => {
       </GoogleMap> 
       <br/>
         <div id="weatherLanding">
-          <WeatherInfo lat={location.lat} lng={location.lng} />
+          <WeatherInfo location={location}  langTypeIdx={langTypeIdx} />
         </div>
     </>
   )
