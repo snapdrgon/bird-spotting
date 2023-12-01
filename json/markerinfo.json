@@ -1,0 +1,16 @@
+{
+    "MarkerInfo": [
+        {
+            "Single":"bird spotted at ",
+            "Multi": "birds spotted at "
+        },
+        {
+            "Single":"ave avistada en ",
+            "Multi": "aves avistadas en "
+        },
+        {
+            "Single":"oiseau repéré à ",
+            "Multi": "oiseaux repérés à "
+        }        
+    ]
+}
