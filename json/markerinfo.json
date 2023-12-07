@@ -2,15 +2,19 @@
     "MarkerInfo": [
         {
             "Single":"bird spotted at ",
-            "Multi": "birds spotted at "
+            "Multi": "birds spotted at ",
+            "Lang": "en"
         },
         {
             "Single":"ave avistada en ",
-            "Multi": "aves avistadas en "
+            "Multi": "aves avistadas en ",
+            "Lang": "esp"
         },
         {
             "Single":"oiseau repéré à ",
-            "Multi": "oiseaux repérés à "
+            "Multi": "oiseaux repérés à ",
+            "Lang": "fr"
+
         }        
     ]
 }

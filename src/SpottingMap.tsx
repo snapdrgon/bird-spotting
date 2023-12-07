@@ -5,13 +5,23 @@ import { getBirds } from "./services/BirdService";
 import { GoogleMap, Marker, InfoWindow } from "@react-google-maps/api";
 import { IBirdObserver } from './models/BirdObserver'
 import { LangTypeIndex } from "./models/LangTypeIndex";
+import { IMarkerInfo } from "./models/MarkerInfo";
+import { getMarker} from './services/FileService';
 
 var location: Locatn = { lat: 39.94, lng: -105.12 }
 
 const SpottingMap = (props: { langTypeIdx: number; }) => {
+const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
 
   //const [langTypeIdx, setlangTypeIdx] = useState(props.langTypeIdx);
   let langTypeIdx = props.langTypeIdx;
+
+  const getMarkerInfo = () => {
+    getMarker().then((response) => {
+        let markerIn: IMarkerInfo = response;
+        setMarkerInfo(markerIn);
+    })
+}
 
   let birdClear = {
     name: "",
@@ -27,8 +37,10 @@ const SpottingMap = (props: { langTypeIdx: number; }) => {
      
   useEffect(() => {
   //  setlangTypeIdx(props.langTypeIdx);
+    getMarkerInfo();
 }, [props.langTypeIdx]);
 
+  console.log(JSON.stringify(markerInfo));
   console.log(`langTypeIdx: ${langTypeIdx}`);
 
   const [selected, setSelected] = useState(birdClear);
