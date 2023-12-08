@@ -42,6 +42,7 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
 
   console.log(JSON.stringify(markerInfo));
   console.log(`langTypeIdx: ${langTypeIdx}`);
+  let markerInfoItem = markerInfo?.MarkerInfo[langTypeIdx];
 
   const [selected, setSelected] = useState(birdClear);
   const [birds, setBirds] = useState<IBirdObserver[] | null>();
@@ -64,7 +65,7 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
   }
 
   const setBirdList = (location: Locatn) => {
-    getBirds(location).then((response) => {
+    getBirds(location, langTypeIdx).then((response) => {
       let bufferBird = response;
       birdList = [];
       bufferBird.map(item => {
@@ -150,8 +151,8 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
               <div id="birdInfo">
                 <strong><a href={selected.birdSpeciesUrl} target="_blank" >{selected.name}</a></strong>
                 <hr />
-                {selected.numberSpotted > 1 ? `${selected.numberSpotted} birds spotted at ${selected.location}` :
-                  `${selected.numberSpotted} bird spotted at ${selected.location}`}
+                {selected.numberSpotted > 1 ? `${selected.numberSpotted} ${markerInfoItem?.Multi} ${selected.location}` :
+                  `${selected.numberSpotted} ${markerInfoItem?.Single} ${selected.location}`}
               </div>
             </InfoWindow>
           )

@@ -2,17 +2,19 @@ import axios from 'axios';
 import { Locatn } from '../models/Locatn';
 import { IBirdDataIn } from '../models/BirdDataIn';
 import { IBirdObserver } from '../models/BirdObserver'
+import { IMarkerInfo } from '../models/MarkerInfo';
+import getLangAbrev from '../Utilities';
 const baseUrl = import.meta.env.VITE_EBIRD_API_URL;
 const ebirdBaseUrl = import.meta.env.VITE_EBIRD_BASE_URL;
 const eBirdApiKey = import.meta.env.VITE_EBIRD_API_KEY;
 
-function birds(location: Locatn) : Promise<IBirdObserver[]> {
+function birds(location: Locatn, language:string) : Promise<IBirdObserver[]> {
     return new Promise((resolve, reject) => {
         let birdList: IBirdObserver[] = [];
         let birds: IBirdDataIn[] | null;
         birds = [];
         console.log(location);
-        let url = `${baseUrl}?lat=${location.lat}&lng=${location.lng}&sppLocale=en`; //en, fr, esp
+        let url = `${baseUrl}?lat=${location.lat}&lng=${location.lng}&sppLocale=${language}`; //en, fr, esp
         birdList = [];
         axios.get(url,
             {
@@ -25,7 +27,7 @@ function birds(location: Locatn) : Promise<IBirdObserver[]> {
             console.log(birds);
             birds?.map((bird) => {
                 birdList.push({
-                    birdSpeciesUrl: `${ebirdBaseUrl}${bird.speciesCode}`,
+                    birdSpeciesUrl: `${ebirdBaseUrl}${bird.speciesCode}/${language}`,
                     name: bird.comName,
                     speciesCode: bird.speciesCode,
                     scientificName: bird.sciName,
@@ -44,13 +46,16 @@ function birds(location: Locatn) : Promise<IBirdObserver[]> {
     })
 }
 
-export async function getBirds(location: Locatn): Promise<IBirdObserver[]> {
+export async function getBirds(location: Locatn, langTypeIdx:number): Promise<IBirdObserver[]> {
+    let lang = getLangAbrev(langTypeIdx);
+    console.log(`getBirds ${lang}`)
     let birdListReturn: IBirdObserver[] = [];
     try {
-        birdListReturn = await birds(location)
+        birdListReturn = await birds(location, lang)
     }
     catch (err) {
         console.log(err);
     }
     return birdListReturn;
 }
+
