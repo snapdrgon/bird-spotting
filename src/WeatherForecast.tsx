@@ -135,7 +135,7 @@ let forecastInfo: IForecastWeather = forecastClear;
 const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
     let location = props.location;
     let langTypeIdx = props.langTypeIdx;
-    getForecastWeather(location).then((response) => {
+    getForecastWeather(location, langTypeIdx).then((response) => {
         forecastInfo = response;
         console.log(forecastInfo);
     }
@@ -143,61 +143,7 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
 
     console.log(`langTypeIdx: ${langTypeIdx}`)
 
-    getForecastWeather(location);
-
-    const direction = (compassPoint: string) => {
-        switch (compassPoint) {
-            case 'N':
-                return 'north';
-                break;
-            case 'NE':
-                return 'northeast';
-                break;
-            case 'NNE':
-                return 'north northeast';
-                break;
-            case 'NW':
-                return 'north west';
-                break;
-            case 'NNW':
-                return 'north northwest';
-                break;
-            case 'S':
-                return 'south';
-                break;
-            case 'SE':
-                return 'southeast';
-                break;
-            case 'SSE':
-                return 'south southeast';
-                break;
-            case 'SW':
-                return 'southwest';
-                break;
-            case 'SSW':
-                return 'south southwest';
-                break;
-            case 'E':
-                return 'east';
-                break;
-            case 'ENE':
-                return 'east northeast';
-                break;
-            case 'ESE':
-                return 'east southeast';
-                break;
-            case 'W':
-                return 'west';
-                break;
-            case 'WSW':
-                return 'west southwest';
-                break;
-            case 'WNW':
-                return 'west northwest';
-                break;
-
-        }
-    }
+    getForecastWeather(location, langTypeIdx);
 
     return (
         <>

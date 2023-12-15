@@ -1,0 +1,37 @@
+{
+    "WeatherMarkerInfo": [
+        {
+            "Condition": "Current Condition:",
+            "Temperature": "Temperature:",
+            "Degrees": "degrees F",
+            "Winds": "Winds out of the ",
+            "At": "at",
+            "Gusts": "mph with gusts up to ",
+            "Speed": "mph",
+            "Max": "Max Temp:",
+            "Min": "Min Temp:"
+        },
+        {
+            "Condition": "Current Condition:",
+            "Temperature": "Temperature:",
+            "Degrees": "degrees F",
+            "Winds": "Winds out of the ",
+            "At": "at",
+            "Gusts": "mph with gusts up to ",
+            "Speed": "mph",
+            "Max": "Max Temp:",
+            "Min": "Min Temp:"
+        },
+        {
+            "Condition": "Current Condition:",
+            "Temperature": "Temperature:",
+            "Degrees": "degrees F",
+            "Winds": "Winds out of the ",
+            "At": "at",
+            "Gusts": "mph with gusts up to ",
+            "Speed": "mph",
+            "Max": "Max Temp:",
+            "Min": "Min Temp:"
+        }
+    ]
+}

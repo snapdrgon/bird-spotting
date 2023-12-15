@@ -3,7 +3,12 @@ import { getCurrentWeather } from './services/WeatherService';
 import { Locatn } from "./models/Locatn";
 import WeatherForecast from './WeatherForecast';
 import { LangTypeIndex } from './models/LangTypeIndex';
+import { getDirection } from './Utilities';
+import { useEffect, useState } from 'react';
+import { getWeatherMarkerInfo } from './services/FileService';
+import { IWeatherMarkerInfo } from './models/WeatherMarkerInfo';
 //var location: Locatn = { lat: 39.94, lng: -105.12 }
+
 let weatherClear = {
     location: {
         name: '',
@@ -46,74 +51,40 @@ let weatherClear = {
     }
 }
 
+
+
 //const [weatherInfo, setWeatherInfo] = useState<ICurrentWeather>();
 let weatherInfo: ICurrentWeather = weatherClear;
 const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
+    const [weatherMarkerInfo, setWeatherMarkerInfo] = useState<IWeatherMarkerInfo | null>();
     let location = props.location;
     let langTypeIdx = props.langTypeIdx;
-    getCurrentWeather(location).then((response) => {
+    getCurrentWeather(location, langTypeIdx).then((response) => {
         weatherInfo = response;
         console.log(weatherInfo);
     }
     )
 
-    console.log(`langTypeIdx: ${langTypeIdx}`);
-
-    getCurrentWeather(location);
-
-    const direction = (compassPoint: string) => {
-        switch (compassPoint) {
-            case 'N':
-                return 'north';
-                break;
-            case 'NE':
-                return 'northeast';
-                break;
-            case 'NNE':
-                return 'north northeast';
-                break;
-            case 'NW':
-                return 'northwest';
-                break;
-            case 'NNW':
-                return 'north northwest';
-                break;
-            case 'S':
-                return 'south';
-                break;
-            case 'SE':
-                return 'southeast';
-                break;
-            case 'SSE':
-                return 'south southeast';
-                break;
-            case 'SW':
-                return 'southwest';
-                break;
-            case 'SSW':
-                return 'south southwest';
-                break;
-            case 'E':
-                return 'east';
-                break;
-            case 'ENE':
-                return 'east northeast';
-                break;
-            case 'ESE':
-                return 'east southeast';
-                break;
-            case 'W':
-                return 'west';
-                break;
-            case 'WSW':
-                return 'west southwest';
-                break;
-            case 'WNW':
-                return 'west northwest';
-                break;
-
-        }
+    const getWeatherMarker = () => {
+        getWeatherMarkerInfo().then((response: any) => {
+            let weatherMarkerIn: IWeatherMarkerInfo = response;
+            setWeatherMarkerInfo(weatherMarkerIn);
+        })
     }
+
+    useEffect(() => {
+        //  setlangTypeIdx(props.langTypeIdx);
+        getWeatherMarker();
+      }, [props.langTypeIdx]);
+
+    console.log(`langTypeIdx: ${langTypeIdx}`);
+    console.log(weatherMarkerInfo);
+
+    let weatherMarkerInfoItem = weatherMarkerInfo?.WeatherMarkerInfo[langTypeIdx];
+
+    console.log(weatherMarkerInfoItem);
+
+    getCurrentWeather(location, langTypeIdx);
 
     return (
         <>
@@ -123,7 +94,7 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
                 <p>{weatherInfo.location.name}, {weatherInfo.location.region}</p>
                 <p>Current Condition: {weatherInfo.current.condition.text}<br />
                     Temperature: {weatherInfo.current.temp_f} degrees F<br />
-                    Winds out of the {direction(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
+                    Winds out of the {getDirection(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
                     {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
                 </p>
             </div>

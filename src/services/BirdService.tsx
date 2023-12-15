@@ -3,7 +3,7 @@ import { Locatn } from '../models/Locatn';
 import { IBirdDataIn } from '../models/BirdDataIn';
 import { IBirdObserver } from '../models/BirdObserver'
 import { IMarkerInfo } from '../models/MarkerInfo';
-import getLangAbrev from '../Utilities';
+import { getLangAbrev } from '../Utilities';
 const baseUrl = import.meta.env.VITE_EBIRD_API_URL;
 const ebirdBaseUrl = import.meta.env.VITE_EBIRD_BASE_URL;
 const eBirdApiKey = import.meta.env.VITE_EBIRD_API_KEY;
@@ -27,7 +27,7 @@ function birds(location: Locatn, language:string) : Promise<IBirdObserver[]> {
             console.log(birds);
             birds?.map((bird) => {
                 birdList.push({
-                    birdSpeciesUrl: `${ebirdBaseUrl}${bird.speciesCode}/${language}`,
+                    birdSpeciesUrl: `${ebirdBaseUrl}${bird.speciesCode}`,
                     name: bird.comName,
                     speciesCode: bird.speciesCode,
                     scientificName: bird.sciName,

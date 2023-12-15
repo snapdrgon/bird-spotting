@@ -2,6 +2,7 @@ import axios from 'axios';
 import { Locatn } from '../models/Locatn';
 import { ICurrentWeather } from '../models/CurrentWeather';
 import { IForecastWeather } from '../models/ForecastWeather';
+import { getLangAbrevWeather } from '../Utilities';
 const baseUrl = import.meta.env.VITE_WEATHER_BASE_URL;
 const weatherApiKey = import.meta.env.VITE_WEATHER_API_KEY;
 let weatherClear:ICurrentWeather = {
@@ -174,10 +175,10 @@ let forecastClear:IForecastWeather =  {
     }
 };
 
-function current(location: Locatn): Promise<ICurrentWeather> {
+function current(location: Locatn, langTypeIdx:number): Promise<ICurrentWeather> {
     return new Promise((resolve, reject) => {
         console.log(location);
-        let url = `${baseUrl}/current.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}`;
+        let url = `${baseUrl}/current.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&lang=${getLangAbrevWeather(langTypeIdx)}`;
         let weatherCurrent: ICurrentWeather;
         axios.get(url).then((response) => {
             weatherCurrent = response.data;
@@ -190,10 +191,10 @@ function current(location: Locatn): Promise<ICurrentWeather> {
     })
 }
 
-export async function getCurrentWeather(location: Locatn): Promise<ICurrentWeather> {
+export async function getCurrentWeather(location: Locatn, langTypeIdx:number): Promise<ICurrentWeather> {
     let weatherCurrentReturn: ICurrentWeather = weatherClear;
     try {
-        weatherCurrentReturn = await current(location)
+        weatherCurrentReturn = await current(location, langTypeIdx)
     }
     catch (err) {
         console.log(err);
@@ -203,10 +204,10 @@ export async function getCurrentWeather(location: Locatn): Promise<ICurrentWeath
 
 //http://api.weatherapi.com/v1/forecast.json?key=&q=London&days=1&aqi=no&alerts=no
 
-function forecast(location: Locatn): Promise<IForecastWeather> {
+function forecast(location: Locatn, langTypeIdx:number): Promise<IForecastWeather> {
     return new Promise((resolve, reject) => {
         console.log(location);
-        let url = `${baseUrl}/forecast.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&days=5`;
+        let url = `${baseUrl}/forecast.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&lang=${getLangAbrevWeather(langTypeIdx)}&days=5`;
         let weatherForecast: IForecastWeather;
         axios.get(url).then((response) => {
             weatherForecast = response.data;
@@ -219,10 +220,10 @@ function forecast(location: Locatn): Promise<IForecastWeather> {
     })
 }
 
-export async function getForecastWeather(location: Locatn): Promise<IForecastWeather> {
+export async function getForecastWeather(location: Locatn, langTypeIdx:number): Promise<IForecastWeather> {
     let weatherForecastReturn: IForecastWeather = forecastClear;
     try {
-        weatherForecastReturn = await forecast(location)
+        weatherForecastReturn = await forecast(location, langTypeIdx)
     }
     catch (err) {
         console.log(err);
