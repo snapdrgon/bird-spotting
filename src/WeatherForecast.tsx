@@ -160,8 +160,8 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
                                 
                                 {convertEpochToDate(forecastDay.date_epoch)}<br/>
                                 <img src={`https://${forecastDay.day.condition.icon}`} /><br />
-                                Max Temp: {forecastDay.day.maxtemp_f}<br />
-                                Min Temp: {forecastDay.day.mintemp_f}
+                                Max Temp: {Math.round(forecastDay.day.maxtemp_f)}<br />
+                                Min Temp: {Math.round(forecastDay.day.mintemp_f)}
                             </li>
                             &nbsp;&nbsp;
                         </div>

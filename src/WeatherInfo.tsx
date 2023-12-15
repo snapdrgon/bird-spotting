@@ -92,9 +92,9 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
             <img src={`https://${weatherInfo.current.condition.icon}`} />
             <div >
                 <p>{weatherInfo.location.name}, {weatherInfo.location.region}</p>
-                <p>Current Condition: {weatherInfo.current.condition.text}<br />
-                    Temperature: {weatherInfo.current.temp_f} degrees F<br />
-                    Winds out of the {getDirection(weatherInfo.current.wind_dir)} at {weatherInfo.current.wind_mph} mph with gusts up to {weatherInfo.current.gust_mph} mph<br />
+                <p>{weatherMarkerInfoItem?.Condition} {weatherInfo.current.condition.text}<br />
+                {weatherMarkerInfoItem?.Temperature} {Math.round(weatherInfo.current.temp_f)} {weatherMarkerInfoItem?.Degrees}<br />
+                {weatherMarkerInfoItem?.Winds} {getDirection(weatherInfo.current.wind_dir)} {weatherMarkerInfoItem?.At} {Math.round(weatherInfo.current.wind_mph)} {weatherMarkerInfoItem?.Gusts} {Math.round(weatherInfo.current.gust_mph)} {weatherMarkerInfoItem?.Speed}<br />
                     {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
                 </p>
             </div>

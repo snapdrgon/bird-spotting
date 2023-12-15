@@ -9,7 +9,8 @@
             "Gusts": "mph with gusts up to ",
             "Speed": "mph",
             "Max": "Max Temp:",
-            "Min": "Min Temp:"
+            "Min": "Min Temp:",
+            "Celsius": "false"
         },
         {
             "Condition": "Current Condition:",
@@ -20,7 +21,8 @@
             "Gusts": "mph with gusts up to ",
             "Speed": "mph",
             "Max": "Max Temp:",
-            "Min": "Min Temp:"
+            "Min": "Min Temp:",
+            "Celsius": "true"
         },
         {
             "Condition": "Current Condition:",
@@ -31,7 +33,8 @@
             "Gusts": "mph with gusts up to ",
             "Speed": "mph",
             "Max": "Max Temp:",
-            "Min": "Min Temp:"
+            "Min": "Min Temp:",
+            "Celsius": "true"
         }
     ]
 }
