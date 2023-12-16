@@ -75,7 +75,7 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
     useEffect(() => {
         //  setlangTypeIdx(props.langTypeIdx);
         getWeatherMarker();
-      }, [props.langTypeIdx]);
+    }, [props.langTypeIdx]);
 
     console.log(`langTypeIdx: ${langTypeIdx}`);
     console.log(weatherMarkerInfo);
@@ -86,20 +86,61 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
 
     getCurrentWeather(location, langTypeIdx);
 
+    function displayWeatherInfo(langTypeIdx:number) {
+        switch (langTypeIdx) {
+            case 0:
+                return ( 
+                    <>
+                            <p>{weatherMarkerInfoItem?.Condition} {weatherInfo.current.condition.text}<br />
+                            {weatherMarkerInfoItem?.Temperature} {Math.round(weatherInfo.current.temp_f)} {weatherMarkerInfoItem?.Degrees}<br />
+                            {weatherMarkerInfoItem?.Winds} {getDirection(weatherInfo.current.wind_dir, langTypeIdx)} {weatherMarkerInfoItem?.At} 
+                            {Math.round(weatherInfo.current.wind_mph)} {weatherMarkerInfoItem?.Gusts} {Math.round(weatherInfo.current.gust_mph)} 
+                            {weatherMarkerInfoItem?.Speed}<br />
+                        </p>
+        
+                    </>
+                 );                 
+                break;
+                case 1:
+                    return ( 
+                        <>
+                                <p>{weatherMarkerInfoItem?.Condition} {weatherInfo.current.condition.text}<br />
+                                {weatherMarkerInfoItem?.Temperature} {Math.round(weatherInfo.current.temp_c)} {weatherMarkerInfoItem?.Degrees}<br />
+                                {weatherMarkerInfoItem?.Winds} {getDirection(weatherInfo.current.wind_dir, langTypeIdx)} {weatherMarkerInfoItem?.At} 
+                                {Math.round(weatherInfo.current.wind_kph)} {weatherMarkerInfoItem?.Gusts} {Math.round(weatherInfo.current.gust_kph)} 
+                                {weatherMarkerInfoItem?.Speed}<br />
+                            </p>
+            
+                        </>
+                     );                     
+                    break;
+                    case 2:
+                        return ( 
+                            <>
+                                    <p>{weatherMarkerInfoItem?.Condition} {weatherInfo.current.condition.text}<br />
+                                    {weatherMarkerInfoItem?.Temperature} {Math.round(weatherInfo.current.temp_c)} {weatherMarkerInfoItem?.Degrees}<br />
+                                    {weatherMarkerInfoItem?.Winds} {getDirection(weatherInfo.current.wind_dir, langTypeIdx)} {weatherMarkerInfoItem?.At} 
+                                    {Math.round(weatherInfo.current.wind_kph)} {weatherMarkerInfoItem?.Gusts} {Math.round(weatherInfo.current.gust_kph)} 
+                                    {weatherMarkerInfoItem?.Speed}<br />
+                                </p>
+                
+                            </>
+                         );                         
+                        break;
+        }
+   }
+    
+
+
     return (
         <>
-            {/* {JSON.stringify(weatherInfo)} */}
             <img src={`https://${weatherInfo.current.condition.icon}`} />
             <div >
                 <p>{weatherInfo.location.name}, {weatherInfo.location.region}</p>
-                <p>{weatherMarkerInfoItem?.Condition} {weatherInfo.current.condition.text}<br />
-                {weatherMarkerInfoItem?.Temperature} {Math.round(weatherInfo.current.temp_f)} {weatherMarkerInfoItem?.Degrees}<br />
-                {weatherMarkerInfoItem?.Winds} {getDirection(weatherInfo.current.wind_dir)} {weatherMarkerInfoItem?.At} {Math.round(weatherInfo.current.wind_mph)} {weatherMarkerInfoItem?.Gusts} {Math.round(weatherInfo.current.gust_mph)} {weatherMarkerInfoItem?.Speed}<br />
-                    {/* Current Time: {convertEpochTimeToLocalTime(weatherInfo.location.localtime_epoch)} */}
-                </p>
+                {displayWeatherInfo(langTypeIdx)}
             </div>
             <hr />
-            <WeatherForecast location={location}  langTypeIdx={langTypeIdx}  />
+            <WeatherForecast location={location} langTypeIdx={langTypeIdx} weatherMarkerInfo={weatherMarkerInfo}/>
             <br />
 
         </>

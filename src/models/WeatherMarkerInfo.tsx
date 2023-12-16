@@ -10,7 +10,6 @@ export interface IWeatherMarkerInfo {
             Speed: string;
             Max: string;
             Min: string;
-            Celsius:boolean;
         }
     ]
 }

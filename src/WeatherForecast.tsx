@@ -1,6 +1,7 @@
 import { getForecastWeather } from './services/WeatherService';
 import { Locatn } from "./models/Locatn";
 import { IForecastWeather } from './models/ForecastWeather';
+import { IWeatherMarkerInfo } from './models/WeatherMarkerInfo';
 
 let forecastClear: IForecastWeather = {
     location: {
@@ -132,9 +133,10 @@ let forecastClear: IForecastWeather = {
 
 let forecastInfo: IForecastWeather = forecastClear;
 
-const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
+const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; weatherMarkerInfo: IWeatherMarkerInfo | null | undefined }) => {
     let location = props.location;
     let langTypeIdx = props.langTypeIdx;
+    let weatherMarkerInfo = props.weatherMarkerInfo;
     getForecastWeather(location, langTypeIdx).then((response) => {
         forecastInfo = response;
         console.log(forecastInfo);
@@ -143,7 +145,80 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
 
     console.log(`langTypeIdx: ${langTypeIdx}`)
 
+    let weatherMarkerInfoItem = weatherMarkerInfo?.WeatherMarkerInfo[langTypeIdx];
+
     getForecastWeather(location, langTypeIdx);
+
+    function displayForecastWeatherInfo(langTypeIdx: number) {
+        switch (langTypeIdx) {
+            case 0:
+                return (
+                    <>
+                        {forecastInfo.forecast.forecastday.slice(1).map(forecastDay =>
+                        (
+
+                            <div>
+                                <li id="forecastItem" className="list-group-item">
+
+                                    {convertEpochToDate(forecastDay.date_epoch, langTypeIdx)}<br />
+                                    <img src={`https://${forecastDay.day.condition.icon}`} /><br />
+                                    {weatherMarkerInfoItem?.Max} {Math.round(forecastDay.day.maxtemp_f)}  {weatherMarkerInfoItem?.Degrees}<br />
+                                    {weatherMarkerInfoItem?.Min} {Math.round(forecastDay.day.mintemp_f)}  {weatherMarkerInfoItem?.Degrees}
+                                </li>
+                                &nbsp;&nbsp;
+                            </div>
+                        )
+                        )}
+                    </>
+                );
+                break;
+            case 1:
+                return (
+                    <>
+                        {forecastInfo.forecast.forecastday.slice(1).map(forecastDay =>
+                        (
+
+                            <div>
+                                <li id="forecastItem" className="list-group-item">
+
+                                    {convertEpochToDate(forecastDay.date_epoch,langTypeIdx)}<br />
+                                    <img src={`https://${forecastDay.day.condition.icon}`} /><br />
+                                    {weatherMarkerInfoItem?.Max} {Math.round(forecastDay.day.maxtemp_c)}  {weatherMarkerInfoItem?.Degrees}<br />
+                                    {weatherMarkerInfoItem?.Min} {Math.round(forecastDay.day.mintemp_c)}  {weatherMarkerInfoItem?.Degrees}
+                                </li>
+                                &nbsp;&nbsp;
+                            </div>
+                        )
+                        )}
+                    </>
+                );
+                break;
+            case 2:
+                return (
+                    <>
+                        {forecastInfo.forecast.forecastday.slice(1).map(forecastDay =>
+                        (
+
+                            <div>
+                                <li id="forecastItem" className="list-group-item">
+
+                                    {convertEpochToDate(forecastDay.date_epoch, langTypeIdx)}<br />
+                                    <img src={`https://${forecastDay.day.condition.icon}`} /><br />
+                                    {weatherMarkerInfoItem?.Max} {Math.round(forecastDay.day.maxtemp_c)}  {weatherMarkerInfoItem?.Degrees}<br />
+                                    {weatherMarkerInfoItem?.Min} {Math.round(forecastDay.day.mintemp_c)}  {weatherMarkerInfoItem?.Degrees}
+                                </li>
+                                &nbsp;&nbsp;
+                            </div>
+                        )
+                        )}
+                    </>
+                );
+                break;
+                break;
+        }
+    }
+
+
 
     return (
         <>
@@ -152,47 +227,74 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; }) => {
             <div id='forecast'>
 
                 <ul className="list-group list-group-horizontal-sm flex-fill justify-content-center">
-                    {forecastInfo.forecast.forecastday.slice(1).map(forecastDay =>
-                    (
-
-                        <div>
-                            <li id="forecastItem" className="list-group-item">
-                                
-                                {convertEpochToDate(forecastDay.date_epoch)}<br/>
-                                <img src={`https://${forecastDay.day.condition.icon}`} /><br />
-                                Max Temp: {Math.round(forecastDay.day.maxtemp_f)}<br />
-                                Min Temp: {Math.round(forecastDay.day.mintemp_f)}
-                            </li>
-                            &nbsp;&nbsp;
-                        </div>
-                    )
-                    )}
+                    {displayForecastWeatherInfo(langTypeIdx)}
                 </ul>
 
             </div>
 
         </>
     )
-    function convertEpochToDate(date_epoch: number):string {
+    function convertEpochToDate(date_epoch: number, langTypeIdx: number): string {
         let date = new Date(date_epoch * 1000);
         let dateIndex = date.getUTCDay();
-        
         let dateOut = "";
-        switch (dateIndex) {
-            case 0: dateOut = "Sunday";
-            break;
-            case 1: dateOut = "Monday";
-            break;
-            case 2: dateOut = "Tuesday";
-            break;
-            case 3: dateOut = "Wednesday";
-            break;
-            case 4: dateOut = "Thursday";
-            break;
-            case 5: dateOut = "Friday";
-            break;
-            case 6: dateOut = "Saturday";
-            break;       
+
+        switch (langTypeIdx) {
+            case 0:
+                switch (dateIndex) {
+                    case 0: dateOut = "Sunday";
+                        break;
+                    case 1: dateOut = "Monday";
+                        break;
+                    case 2: dateOut = "Tuesday";
+                        break;
+                    case 3: dateOut = "Wednesday";
+                        break;
+                    case 4: dateOut = "Thursday";
+                        break;
+                    case 5: dateOut = "Friday";
+                        break;
+                    case 6: dateOut = "Saturday";
+                        break;
+                }        
+                break;
+            case 1:
+                switch (dateIndex) {
+                    case 0: dateOut = "Domingo";
+                        break;
+                    case 1: dateOut = "Lunes";
+                        break;
+                    case 2: dateOut = "Martes";
+                        break;
+                    case 3: dateOut = "Miércoles";
+                        break;
+                    case 4: dateOut = "Jueves";
+                        break;
+                    case 5: dateOut = "Viernes";
+                        break;
+                    case 6: dateOut = "Sábado";
+                        break;
+                }        
+                break;
+            case 2:
+                switch (dateIndex) {
+                    case 0: dateOut = "Dimanche";
+                        break;
+                    case 1: dateOut = "lundi";
+                        break;
+                    case 2: dateOut = "mardi";
+                        break;
+                    case 3: dateOut = "mercredi";
+                        break;
+                    case 4: dateOut = "jeudi";
+                        break;
+                    case 5: dateOut = "le vendredi";
+                        break;
+                    case 6: dateOut = "Samedi";
+                        break;
+                }        
+                break;
+
         }
         console.log(dateIndex, dateOut, date.toLocaleDateString(), date_epoch);
         return dateOut;

@@ -63,7 +63,7 @@ let weatherMarkerInfoClear:IWeatherMarkerInfo = {
             Condition: '',
             Temperature: '',
             Degrees: '',
-            Wind: '',
+            Winds: '',
             At: '',
             Gusts: '',
             Speed: '',

@@ -5,36 +5,33 @@
             "Temperature": "Temperature:",
             "Degrees": "degrees F",
             "Winds": "Winds out of the ",
-            "At": "at",
+            "At": "at ",
             "Gusts": "mph with gusts up to ",
-            "Speed": "mph",
+            "Speed": " mph",
             "Max": "Max Temp:",
-            "Min": "Min Temp:",
-            "Celsius": "false"
+            "Min": "Min Temp:"
         },
         {
-            "Condition": "Current Condition:",
-            "Temperature": "Temperature:",
-            "Degrees": "degrees F",
-            "Winds": "Winds out of the ",
-            "At": "at",
-            "Gusts": "mph with gusts up to ",
-            "Speed": "mph",
-            "Max": "Max Temp:",
-            "Min": "Min Temp:",
-            "Celsius": "true"
+            "Condition": "Estado actual:",
+            "Temperature": "Temperatura:",
+            "Degrees": "grados C",
+            "Winds": "Vientos del  ",
+            "At": "a ",
+            "Gusts": "kph con rachas de hasta ",
+            "Speed": " kph",
+            "Max": "Temperatura máxima:",
+            "Min": "Temperatura mínima:"
         },
         {
-            "Condition": "Current Condition:",
-            "Temperature": "Temperature:",
-            "Degrees": "degrees F",
-            "Winds": "Winds out of the ",
-            "At": "at",
-            "Gusts": "mph with gusts up to ",
-            "Speed": "mph",
-            "Max": "Max Temp:",
-            "Min": "Min Temp:",
-            "Celsius": "true"
+            "Condition": "Conditions actuelles :",
+            "Temperature": "Température :",
+            "Degrees": "degrés C",
+            "Winds": "Vents d'",
+            "At": "à ",
+            "Gusts": "kph avec des rafales jusqu'à ",
+            "Speed": " kph",
+            "Max": "Température maximale :",
+            "Min": "Température minimale :"
         }
     ]
 }
