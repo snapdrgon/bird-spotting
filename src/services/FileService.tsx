@@ -75,7 +75,7 @@ let weatherMarkerInfoClear:IWeatherMarkerInfo = {
 
 function markUpIn(): Promise<IWebMarkup> {
     return new Promise((resolve, reject) => {
-        let url = "../json/markup.json";
+        let url = "../markup.json";
         let webMarkupIn: IWebMarkup;
         axios.get(url).then((response) => {
             webMarkupIn = response.data;
@@ -102,7 +102,7 @@ export async function getMarkup(): Promise<IWebMarkup> {
 
 function markerInfoIn(): Promise<IMarkerInfo> {
     return new Promise((resolve, reject) => {
-        let url = "../json/markerinfo.json";
+        let url = "../markerinfo.json";
         let markerInfo: IMarkerInfo;
         axios.get(url).then((response) => {
             markerInfo = response.data;
@@ -129,7 +129,7 @@ export async function getMarker(): Promise<IMarkerInfo> {
 
 function weatherMarkerInfo(): Promise<IWeatherMarkerInfo> {
     return new Promise((resolve, reject) => {
-        let url = "../json/weathermarkerinfo.json";
+        let url = "../weathermarkerinfo.json";
         let weatherMarkerInfo: IWeatherMarkerInfo;
         axios.get(url).then((response) => {
             weatherMarkerInfo = response.data;
