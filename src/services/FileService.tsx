@@ -79,7 +79,7 @@ function markUpIn(): Promise<IWebMarkup> {
         let webMarkupIn: IWebMarkup;
         axios.get(url).then((response) => {
             webMarkupIn = response.data;
-            console.log(webMarkupIn);
+            //console.log(webMarkupIn);
             resolve(webMarkupIn);
         }).catch(() => {
             reject("Unable to retrieve Web Markup");
@@ -92,10 +92,10 @@ export async function getMarkup(): Promise<IWebMarkup> {
     let webMarkupReturn: IWebMarkup = webMarkClear;
     try {
         webMarkupReturn = await markUpIn();
-        console.log(webMarkupReturn);
+        //console.log(webMarkupReturn);
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return webMarkupReturn;
 }
@@ -106,7 +106,7 @@ function markerInfoIn(): Promise<IMarkerInfo> {
         let markerInfo: IMarkerInfo;
         axios.get(url).then((response) => {
             markerInfo = response.data;
-            console.log(markerInfo);
+            //console.log(markerInfo);
             resolve(markerInfo);
         }).catch(() => {
             reject("Unable to retrieve Web Markup");
@@ -119,10 +119,10 @@ export async function getMarker(): Promise<IMarkerInfo> {
     let markerInfoReturn: IMarkerInfo = markerInfoClear;
     try {
         markerInfoReturn = await markerInfoIn();
-        console.log(markerInfoReturn);
+        //console.log(markerInfoReturn);
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return markerInfoReturn;
 }
@@ -133,7 +133,7 @@ function weatherMarkerInfo(): Promise<IWeatherMarkerInfo> {
         let weatherMarkerInfo: IWeatherMarkerInfo;
         axios.get(url).then((response) => {
             weatherMarkerInfo = response.data;
-            console.log(weatherMarkerInfo);
+            //console.log(weatherMarkerInfo);
             resolve(weatherMarkerInfo);
         }).catch(() => {
             reject("Unable to retrieve Weather Marker Info");
@@ -146,10 +146,10 @@ export async function getWeatherMarkerInfo(): Promise<IWeatherMarkerInfo> {
     let weatherInfoReturn: IWeatherMarkerInfo = weatherMarkerInfoClear;
     try {
         weatherInfoReturn = await weatherMarkerInfo();
-        console.log(weatherInfoReturn);
+        //console.log(weatherInfoReturn);
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return weatherInfoReturn;
 }

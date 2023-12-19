@@ -40,8 +40,8 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
     getMarkerInfo();
 }, [props.langTypeIdx]);
 
-  console.log(JSON.stringify(markerInfo));
-  console.log(`langTypeIdx: ${langTypeIdx}`);
+  //console.log(JSON.stringify(markerInfo));
+  //console.log(`langTypeIdx: ${langTypeIdx}`);
   let markerInfoItem = markerInfo?.MarkerInfo[langTypeIdx];
 
   const [selected, setSelected] = useState(birdClear);
@@ -54,13 +54,13 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         location = { lat: position.coords.latitude, lng: position.coords.longitude };
-        console.log(location);
+        //console.log(location);
       })
     }
     else {
-      console.log("Geolocation is not supported by this browser. Using Broomfield, CO longitude and latitude.");
+      //console.log("Geolocation is not supported by this browser. Using Broomfield, CO longitude and latitude.");
       location = { lat: 39.94, lng: -105.12 };
-      console.log(location);
+      //console.log(location);
     }
   }
 
@@ -83,25 +83,25 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
       })
       setBirds(birdList);
     });
-    console.log(birds);
+    //console.log(birds);
   }
 
   useEffect(() => {
     //grab the geolocation
     getGeoLocation();
-    console.log(location);
+    //console.log(location);
     setBirdList(location);
   }, []);
 
   const placeMarker = (e: any) => {
     setSelected(birdClear);
     location = { lat: Number(e.latLng.lat()), lng: Number(e.latLng.lng()) };
-    console.log(location);
+    //console.log(location);
     setBirdList(location);
     return false
   }
 
-  console.log(birds);
+  //console.log(birds);
 
   let birdKey = 0;
 
@@ -124,7 +124,7 @@ const [markerInfo, setMarkerInfo] = useState<IMarkerInfo | null>();
         mapContainerClassName="map-container">
         {
           birds?.map(bird => {
-            // console.log(bird);
+            // //console.log(bird);
             let birdLoc = { lat: bird.lat, lng: bird.lng };
 
             return (

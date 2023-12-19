@@ -61,7 +61,7 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
     let langTypeIdx = props.langTypeIdx;
     getCurrentWeather(location, langTypeIdx).then((response) => {
         weatherInfo = response;
-        console.log(weatherInfo);
+        //console.log(weatherInfo);
     }
     )
 
@@ -77,12 +77,12 @@ const WeatherInfo = (props: { location: Locatn; langTypeIdx: number; }) => {
         getWeatherMarker();
     }, [props.langTypeIdx]);
 
-    console.log(`langTypeIdx: ${langTypeIdx}`);
-    console.log(weatherMarkerInfo);
+    //console.log(`langTypeIdx: ${langTypeIdx}`);
+    //console.log(weatherMarkerInfo);
 
     let weatherMarkerInfoItem = weatherMarkerInfo?.WeatherMarkerInfo[langTypeIdx];
 
-    console.log(weatherMarkerInfoItem);
+    //console.log(weatherMarkerInfoItem);
 
     getCurrentWeather(location, langTypeIdx);
 

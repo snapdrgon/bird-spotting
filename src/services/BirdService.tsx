@@ -13,7 +13,7 @@ function birds(location: Locatn, language:string) : Promise<IBirdObserver[]> {
         let birdList: IBirdObserver[] = [];
         let birds: IBirdDataIn[] | null;
         birds = [];
-        console.log(location);
+        //console.log(location);
         let url = `${baseUrl}?lat=${location.lat}&lng=${location.lng}&sppLocale=${language}`; //en, fr, esp
         birdList = [];
         axios.get(url,
@@ -24,7 +24,7 @@ function birds(location: Locatn, language:string) : Promise<IBirdObserver[]> {
             }
         ).then((response) => {
             birds = response.data;
-            console.log(birds);
+            //console.log(birds);
             birds?.map((bird) => {
                 birdList.push({
                     birdSpeciesUrl: `${ebirdBaseUrl}${bird.speciesCode}`,
@@ -48,13 +48,13 @@ function birds(location: Locatn, language:string) : Promise<IBirdObserver[]> {
 
 export async function getBirds(location: Locatn, langTypeIdx:number): Promise<IBirdObserver[]> {
     let lang = getLangAbrev(langTypeIdx);
-    console.log(`getBirds ${lang}`)
+    //console.log(`getBirds ${lang}`)
     let birdListReturn: IBirdObserver[] = [];
     try {
         birdListReturn = await birds(location, lang)
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return birdListReturn;
 }

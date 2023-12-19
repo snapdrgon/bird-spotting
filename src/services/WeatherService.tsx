@@ -177,12 +177,12 @@ let forecastClear:IForecastWeather =  {
 
 function current(location: Locatn, langTypeIdx:number): Promise<ICurrentWeather> {
     return new Promise((resolve, reject) => {
-        console.log(location);
+        //console.log(location);
         let url = `${baseUrl}/current.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&lang=${getLangAbrevWeather(langTypeIdx)}`;
         let weatherCurrent: ICurrentWeather;
         axios.get(url).then((response) => {
             weatherCurrent = response.data;
-            console.log(weatherCurrent);
+            //console.log(weatherCurrent);
             resolve(weatherCurrent);
         }).catch(() => {
             reject("Unable to retrieve Current Weather");
@@ -197,7 +197,7 @@ export async function getCurrentWeather(location: Locatn, langTypeIdx:number): P
         weatherCurrentReturn = await current(location, langTypeIdx)
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return weatherCurrentReturn;
 }
@@ -206,12 +206,12 @@ export async function getCurrentWeather(location: Locatn, langTypeIdx:number): P
 
 function forecast(location: Locatn, langTypeIdx:number): Promise<IForecastWeather> {
     return new Promise((resolve, reject) => {
-        console.log(location);
+        //console.log(location);
         let url = `${baseUrl}/forecast.json?key=${weatherApiKey}&q=${location.lat}, ${location.lng}&lang=${getLangAbrevWeather(langTypeIdx)}&days=5`;
         let weatherForecast: IForecastWeather;
         axios.get(url).then((response) => {
             weatherForecast = response.data;
-            console.log(weatherForecast);
+            //console.log(weatherForecast);
             resolve(weatherForecast);
         }).catch(() => {
             reject("Unable to retrieve Forecast Weather");
@@ -226,7 +226,7 @@ export async function getForecastWeather(location: Locatn, langTypeIdx:number): 
         weatherForecastReturn = await forecast(location, langTypeIdx)
     }
     catch (err) {
-        console.log(err);
+        //console.log(err);
     }
     return weatherForecastReturn;
 }

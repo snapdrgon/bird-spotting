@@ -29,7 +29,7 @@ export default function MenuComponent() {
     const [langTypeIdx, setlangTypeIdx] = useState(getLangIndex());
 
     const setLanguage = (language: LanguageType) => {
-        console.log(`Language: ${language}`);
+        //console.log(`Language: ${language}`);
         localStorage.setItem('languageType', language);
         let idx = getLangIndex();
         setlangTypeIdx(idx);

@@ -26,8 +26,8 @@ export default function BirdComponent(props: { langTypeIdx: number; }) {
         getMarkupInfo();
     }, [props.langTypeIdx]);
 
-    console.log(JSON.stringify(webMarkup));
-    console.log(`langTypeIdx: ${langTypeIdx}`);
+    //console.log(JSON.stringify(webMarkup));
+    //console.log(`langTypeIdx: ${langTypeIdx}`);
 
     let markup = webMarkup?.Markup[langTypeIdx];
 

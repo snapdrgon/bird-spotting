@@ -139,11 +139,11 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; weather
     let weatherMarkerInfo = props.weatherMarkerInfo;
     getForecastWeather(location, langTypeIdx).then((response) => {
         forecastInfo = response;
-        console.log(forecastInfo);
+        //console.log(forecastInfo);
     }
     )
 
-    console.log(`langTypeIdx: ${langTypeIdx}`)
+    //console.log(`langTypeIdx: ${langTypeIdx}`)
 
     let weatherMarkerInfoItem = weatherMarkerInfo?.WeatherMarkerInfo[langTypeIdx];
 
@@ -296,7 +296,7 @@ const WeatherForecast = (props: { location: Locatn; langTypeIdx: number; weather
                 break;
 
         }
-        console.log(dateIndex, dateOut, date.toLocaleDateString(), date_epoch);
+        //console.log(dateIndex, dateOut, date.toLocaleDateString(), date_epoch);
         return dateOut;
     }
 
