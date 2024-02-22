@@ -1,9 +1,12 @@
 import { useState } from "react";
-import {LanguageType} from "../src/enumerators/Language";
+import { LanguageType } from "../src/enumerators/Language";
 import BirdComponent from "./BirdComponent";
+import BirdComponenten from "./BirdComponenten";
+import BirdComponentesp from "./BirdComponentesp";
+import BirdComponentfr from "./BirdComponentfr";
 export default function MenuComponent() {
 
-   
+
     const getLangIndex = (): number => {
         let langIndex = 0;
         let languageType = localStorage.getItem("languageType");
@@ -26,7 +29,37 @@ export default function MenuComponent() {
         return langIndex;
     }
 
+    const getLanguageType = (langIndex:number):LanguageType => {
+        let langTypeOut= LanguageType.English;
+        switch (langIndex) {
+            case 0:
+                langTypeOut = LanguageType.English;
+                break;
+            case 1:
+                langTypeOut = LanguageType.Español ;
+                break;
+            case 2:
+                langTypeOut = LanguageType.Français;
+                break;
+        }
+        return langTypeOut;
+    }
+
+
     const [langTypeIdx, setlangTypeIdx] = useState(getLangIndex());
+
+    const callBirdComponent = (language: LanguageType):JSX.Element => {
+        switch (language) {
+            case LanguageType.English:
+                return <BirdComponenten langTypeIdx={langTypeIdx} />;
+            case LanguageType.Español:
+                return <BirdComponentesp langTypeIdx={langTypeIdx} />;
+            case LanguageType.Français:
+                return <BirdComponentfr langTypeIdx={langTypeIdx} />;
+        }
+
+    }
+
 
     const setLanguage = (language: LanguageType) => {
         //console.log(`Language: ${language}`);
@@ -34,7 +67,7 @@ export default function MenuComponent() {
         let idx = getLangIndex();
         setlangTypeIdx(idx);
     }
-         
+
 
     return (
         <>
@@ -43,13 +76,13 @@ export default function MenuComponent() {
                     Language
                 </button>
                 <ul className="dropdown-menu dropdown-menu-end">
-                    <li><button className="dropdown-item" type="button" onClick={() => setLanguage(LanguageType.English)}>English</button></li>
-                    <li><button className="dropdown-item" type="button" onClick={() => setLanguage(LanguageType.Español)}>Español</button></li>
-                    <li><button className="dropdown-item" type="button" onClick={() => setLanguage(LanguageType.Français)}>Français</button></li>
+                    <li><button className="dropdown-item" type="button" onClick={() =>setLanguage(LanguageType.English)}>English</button></li>
+                    <li><button className="dropdown-item" type="button" onClick={() =>setLanguage(LanguageType.Español)}>Español</button></li>
+                    <li><button className="dropdown-item" type="button" onClick={() =>setLanguage(LanguageType.Français)}>Français</button></li>
 
                 </ul>
             </div>
-            <BirdComponent langTypeIdx={langTypeIdx} />
+           { callBirdComponent(getLanguageType(langTypeIdx))}
         </>
     );
 }  
