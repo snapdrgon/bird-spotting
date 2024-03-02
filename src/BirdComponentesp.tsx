@@ -37,7 +37,6 @@ export default function BirdComponent(props: { langTypeIdx: number; }) {
             <Helmet>
                 <title>Observación de aves</title>
                 <meta name='description' content='Observación de aves' />
-                <link rel='canonical' href='https://bird-spotting.com/' />
             </Helmet>
             <div className="jumbotron">
                 <h1 className="display-3">Observación de aves</h1>
