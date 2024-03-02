@@ -1,36 +1,14 @@
 import BirdMapComponent from './BirdMapComponent';
 import { useMemo, useEffect, useState } from "react";
 import { LanguageType } from './enumerators/Language';
-import { IWebMarkup } from './models/WebMarkup';
 import { getForecastWeather } from './services/WeatherService';
-import { getMarkup } from './services/FileService';
 import { LangTypeIndex } from './models/LangTypeIndex';
 import { Helmet } from 'react-helmet-async';
 
 export default function BirdComponent(props: { langTypeIdx: number; }) {
 
-    const [webMarkup, setwebMarkup] = useState<IWebMarkup | null>();
-    // const [langTypeIdx, setlangTypeIdx] = useState(props.langTypeIdx);
-    let langTypeIdx = props.langTypeIdx;
+      let langTypeIdx = props.langTypeIdx;
 
-    const getMarkupInfo = () => {
-        getMarkup().then((response) => {
-            let markupIn: IWebMarkup = response;
-            setwebMarkup(markupIn);
-        })
-    }
-
-    useEffect(() => {
-
-        //grab the markup
-        // setlangTypeIdx(props.langTypeIdx);
-        getMarkupInfo();
-    }, [props.langTypeIdx]);
-
-    //console.log(JSON.stringify(webMarkup));
-    //console.log(`langTypeIdx: ${langTypeIdx}`);
-
-    let markup = webMarkup?.Markup[langTypeIdx];
 
     return (
         <>
