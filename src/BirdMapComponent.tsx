@@ -1,9 +1,9 @@
 import { useLoadScript } from "@react-google-maps/api";
-import SpottingMap from "./SpottingMap";
 import { LangTypeIndex } from "./models/LangTypeIndex";
 import { useEffect, useState } from "react";
 import SpottingMapen from "./SpottingMapen";
 import SpottingMapesp from "./SpottingMapesp";
+import SpottingMapfr from "./SpottingMapfr";
 
 export default function BirdMapComponent(props: { langTypeIdx: number; }) {
 
@@ -29,7 +29,7 @@ export default function BirdMapComponent(props: { langTypeIdx: number; }) {
       case 1:
         return <div><SpottingMapesp langTypeIdx={langTypeIdx} /></div>;
       case 2:
-        return<div><SpottingMap langTypeIdx={langTypeIdx} /></div>;
+        return<div><SpottingMapfr langTypeIdx={langTypeIdx} /></div>;
     }
   }
 };

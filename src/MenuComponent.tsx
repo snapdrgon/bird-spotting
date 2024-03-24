@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { LanguageType } from "../src/enumerators/Language";
-import BirdComponent from "./BirdComponent";
 import BirdComponenten from "./BirdComponenten";
 import BirdComponentesp from "./BirdComponentesp";
 import BirdComponentfr from "./BirdComponentfr";
